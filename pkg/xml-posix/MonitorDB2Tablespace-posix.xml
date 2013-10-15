@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.uptimesoftware.com/erdc/erdc erdc"
+        xmlns="http://www.uptimesoftware.com/erdc/erdc"
+        xmlns:upt="http://www.uptimesoftware.com/erdc/erdc" version="4.0" target_grouping="other">
+    <class>DB2 Tablespace</class>
+    <exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
+    <elements>
+        <element name="process" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+            <control_options> size:40 </control_options>
+            <default_value>scripts/MonitorDB2Tablespace/db2tablespace.sh</default_value>
+            <short_description>Script Name</short_description>
+            <long_description>Name of the script/binary/process to be executed by up.time </long_description>
+            <validation_rule>
+                <alphanumeric/>
+            </validation_rule>
+            <error_message>
+                <alphanumeric>required field</alphanumeric>
+            </error_message>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>              
+        <group name="group_dbport" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbport" parameter_type="input" data_type="integer" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value>50001</default_value>
+                <short_description>Database Port</short_description>
+                <long_description>Enter the port the database is listening on</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_dbuser" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbuser" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database User</short_description>
+                <long_description>Enter a userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbpassword" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbpassword" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database Password</short_description>
+                <long_description>Enter the password for the userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <password/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbname" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbname" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:20</control_options>
+                <default_value/>
+                <short_description>Database Name</short_description>
+                <long_description>Enter the name of the database instance you wish to test</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                                           
+        <group name="group_TBSP_USED_SIZE_KB" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TBSP_USED_SIZE_KB" parameter_type="output" data_type="ranged" gui_basic="1"
+                     range_type="1" units="KB">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Tablespace Used (KB)</short_description>
+                <long_description>The total used size of the tablespace in KB, calculated as used_pages*pagesize/1024</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_TBSP_FREE_SIZE_KB" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TBSP_FREE_SIZE_KB" parameter_type="output" data_type="ranged" gui_basic="1"
+                     range_type="1" units="KB">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Tablespace Available (KB)</short_description>
+                <long_description>The total available size of the tablespace in KB, calculated as free_pages*pagesize/1024</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_TBSP_UTILIZATION_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TBSP_UTILIZATION_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+                     range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Tablespace Used (%)</short_description>
+                <long_description>The utilization of the tablespace as a percentage.  Calculated as (used_pages/usable_pages)*100, if usable pages is available.  Otherwise -1 will be displayed</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                
+        <group name="group_TBSP_USED_PAGES" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TBSP_USED_PAGES" parameter_type="output" data_type="ranged" gui_basic="1"
+                     range_type="1" units="pages">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Used Pages In All Tablespaces</short_description>
+                <long_description>Used pages in tablespace monitor element.</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_TBSP_FREE_PAGES" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TBSP_FREE_PAGES" parameter_type="output" data_type="ranged" gui_basic="1"
+                     range_type="1" units="pages">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Free Pages in all Tablespaces</short_description>
+                <long_description>Free pages in tablespace monitor element.</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>   
+        <group name="timerresult" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="timer" parameter_type="output" data_type="integer" gui_basic="0"
+                     range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Response time</short_description>
+                <long_description>Response time in ms</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>	
+    </elements>
+    <help/>
+</uptime>

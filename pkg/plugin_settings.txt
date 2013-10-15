@@ -1,0 +1,8 @@
+name=DB2 Database Monitors (Basic, Buffer Pool, TableSpace)
+version=2.2
+platforms=windows linux solaris
+description=This includes a package of three monitors in one. This includes the DB2 Basic, DB2 Buffer Pool, and DB2 TableSpace monitors.
+requiresAgentScript=false
+restartCore=false
+onUpgradeRemoveFiles=true
+onUpgradeRemoveMonitors=false

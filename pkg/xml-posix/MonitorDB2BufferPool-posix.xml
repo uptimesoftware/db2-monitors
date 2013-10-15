@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.uptimesoftware.com/erdc/erdc erdc"
+        xmlns="http://www.uptimesoftware.com/erdc/erdc"
+        xmlns:upt="http://www.uptimesoftware.com/erdc/erdc" version="4.0" target_grouping="other">
+    <class>DB2 Buffer Pool</class>
+    <exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
+    <elements>
+        <element name="process" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+            <control_options> size:40 </control_options>
+            <default_value>scripts/MonitorDB2BufferPool/db2bufferpool.sh</default_value>
+            <short_description>Script Name</short_description>
+            <long_description>Name of the script/binary/process to be executed by up.time </long_description>
+            <validation_rule>
+                <alphanumeric/>
+            </validation_rule>
+            <error_message>
+                <alphanumeric>required field</alphanumeric>
+            </error_message>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>              
+        <group name="group_dbport" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbport" parameter_type="input" data_type="integer" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value>50001</default_value>
+                <short_description>Database Port</short_description>
+                <long_description>Enter the port the database is listening on</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_dbuser" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbuser" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database User</short_description>
+                <long_description>Enter a userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbpassword" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbpassword" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database Password</short_description>
+                <long_description>Enter the password for the userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <password/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbname" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbname" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:20</control_options>
+                <default_value/>
+                <short_description>Database Name</short_description>
+                <long_description>Enter the name of the database instance you wish to test</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                                           
+        <group name="group_ASYNC_NOT_READ_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="ASYNC_NOT_READ_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Non-Accessed Asynchronous Reads</short_description>
+                <long_description>Percentage of pages read asynchronously from disk, but never accessed by a query.</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_AVERAGE_ASYNC_READ_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_ASYNC_READ_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Asynchronous Read Time</short_description>
+                <long_description>Average asynchronous read time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_AVERAGE_SYNC_READ_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_SYNC_READ_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Synchronous Read Time</short_description>
+                <long_description>Average synchronous read time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>                
+        <group name="group_AVERAGE_READ_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_READ_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Read Time</short_description>
+                <long_description>Average read time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_PERCENT_SYNC_READS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="PERCENT_SYNC_READS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Non-Prefetched Synchronous Reads</short_description>
+                <long_description>Precentage of pages read synchronously without prefectching</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>   
+        <group name="group_AVERAGE_ASYNC_WRITE_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_ASYNC_WRITE_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Asynchronous Write Time</short_description>
+                <long_description>Average asynchronous write time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_AVERAGE_SYNC_WRITE_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_SYNC_WRITE_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Synchronous Write Time</short_description>
+                <long_description>Average synchronous write time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>                
+        <group name="group_AVERAGE_WRITE_TIME_MS" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="AVERAGE_WRITE_TIME_MS" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Average Write Time</short_description>
+                <long_description>Average write time in milliseconds</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_PERCENT_WRITES_ASYNC" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="PERCENT_WRITES_ASYNC" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Asynchronous Write Percentage</short_description>
+                <long_description>Precentage of writes that are asynchronous</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                  
+        <group name="group_DATA_HIT_RATIO_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="DATA_HIT_RATIO_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Data Hit Ratio</short_description>
+                <long_description>Data hits in buffer pool percentage</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                  
+        <group name="group_INDEX_HIT_RATIO_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="INDEX_HIT_RATIO_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Index Hit Ratio</short_description>
+                <long_description>Index hits in buffer pool percentage</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                  
+        <group name="group_XDA_HIT_RATIO_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="XDA_HIT_RATIO_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Auxiliary Storage Objects Hit Ratio</short_description>
+                <long_description>Auxiliary storage object hits in buffer pool percentage</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                  
+        <group name="group_TOTAL_HIT_RATIO_PERCENT" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="TOTAL_HIT_RATIO_PERCENT" parameter_type="output" data_type="ranged" gui_basic="1"
+range_type="1" units="%">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Total Hit Ratio (Index, Data and XDA)</short_description>
+                <long_description>Data hits in buffer pool for Index, Data and XDA</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <decimal/>
+                </gui_type>
+            </element>
+        </group>                  
+        <group name="timerresult" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="timer" parameter_type="output" data_type="integer" gui_basic="0"
+range_type="1" units="ms">
+                <control_options>size:8</control_options>
+                <default_value/>
+                <short_description>Response time</short_description>
+                <long_description>Response time in ms</long_description>
+                <validation_rule/>
+                <error_message/>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>	
+    </elements>
+    <help/>
+</uptime>

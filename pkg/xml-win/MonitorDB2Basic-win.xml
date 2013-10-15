@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.uptimesoftware.com/erdc/erdc erdc"
+        xmlns="http://www.uptimesoftware.com/erdc/erdc"
+        xmlns:upt="http://www.uptimesoftware.com/erdc/erdc" version="4.0" target_grouping="other">
+    <class>DB2 Basic</class>
+    <exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
+    <elements>
+        <element name="process" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+            <control_options> size:40 </control_options>
+            <default_value>scripts/MonitorDB2Basic/db2basic.bat</default_value>
+            <short_description>Script Name</short_description>
+            <long_description>Name of the script/binary/process to be executed by up.time </long_description>
+            <validation_rule>
+                <alphanumeric/>
+            </validation_rule>
+            <error_message>
+                <alphanumeric>required field</alphanumeric>
+            </error_message>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>              
+        <group name="group_dbport" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbport" parameter_type="input" data_type="integer" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value>50001</default_value>
+                <short_description>Database Port</short_description>
+                <long_description>Enter the port the database is listening on</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <integer/>
+                </gui_type>
+            </element>
+        </group>
+        <group name="group_dbuser" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbuser" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database User</short_description>
+                <long_description>Enter a userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbpassword" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbpassword" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:10</control_options>
+                <default_value></default_value>
+                <short_description>Database Password</short_description>
+                <long_description>Enter the password for the userid with read access to the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <password/>
+                </gui_type>
+            </element>
+        </group>                 
+        <group name="group_dbname" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbname" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:20</control_options>
+                <default_value/>
+                <short_description>Database Name</short_description>
+                <long_description>Enter the name of the database instance you wish to test</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group> 
+        <group name="group_dbquery" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="dbquery" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>rows:5,size:50</control_options>
+                <default_value/>
+                <short_description>Database Query</short_description>
+                <long_description>Enter the query to execute against the database</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                
+        <group name="group_match" switch="0">
+            <short_description/>
+            <long_description/>
+            <element name="match" parameter_type="input" data_type="string" gui_basic="1"
+                     range_type="0" units="">
+                <control_options>size:20</control_options>
+                <default_value/>
+                <short_description>Match</short_description>
+                <long_description>Enter the string to match against the output of the query</long_description>
+                <validation_rule>
+                    <alphanumeric/>
+                </validation_rule>
+                <error_message>
+                    <alphanumeric>required field</alphanumeric>
+                </error_message>
+                <gui_type>
+                    <string/>
+                </gui_type>
+            </element>
+        </group>                               
+        
+    </elements>
+    <help/>
+</uptime>
