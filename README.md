@@ -1,4 +1,4 @@
-# DB/2 Basic Monitor
+# DB/2 Buffer Pool Monitor
 
 See http://uptimesoftware.github.io for more information.
 
@@ -13,45 +13,46 @@ database
 
 
   
-* DB2 Basic Monitor 1.1 - 7.1, 7.0, 6.0, 5.5, 5.4, 5.3, 5.2
+* DB2 Buffer Pool Monitor 1.0 - 6.0, 5.5, 5.4, 5.3, 5.2
   
 
 
 ### Description
-Performs basic checks on DB2 databases.
+Collects buffer pool metrics from DB2.
 This monitor has been bundled into the DB2 Monitors plugin.
 Note: It is not supported for QAS databases.
 
 
 ### Supported Monitoring Stations
 
-7.1, 7.0, 6.0, 5.5, 5.4, 5.3, 5.2
+6.0, 5.5, 5.4, 5.3, 5.2
 
 ### Supported Agents
 None; no agent required
 
 ### Installation Notes
 <ol>
-<li><p>Place zip file in uptime base directory</p></li>
-<li><p>Run the following command(s) from the uptime directory:
-Windows:</p>
-
-<blockquote><p>cd
-scripts\loadpluginmonitor</p></blockquote></li>
+<li>Place jar file(s) in "/core" directory</li>
 </ol>
 
 
-<p>Linux/Solaris:</p>
+<p>If on Linux/Solaris:
+- edit the /uptime.lax file and add the new jar files to the line that starts with:
+lax.class.path=...</p>
 
-<h1>cd</h1>
+<p>Note: It will be a single long line even though it looks like it's on multiple lines. Make sure the new jar filenames are on the same line.</p>
 
-<h1>scripts/loadpluginmonitor</h1>
+<ol>
+<li><p>Restart the up.time Data Collector (core)</p></li>
+<li><p>Place the xml file in the uptime directory and run the following command(s) from the uptime directory:</p>
 
-<p>That's it!</p>
+<blockquote><p>scripts\erdcloader -x</p></blockquote></li>
+</ol>
+
 
 
 ### Dependencies
-<p>n/a</p>
+<p>This monitor requires the "MonitorDB2.jar" file to be placed in it's directory (scripts/).</p>
 
 
 ### Input Variables
@@ -62,6 +63,8 @@ scripts\loadpluginmonitor</p></blockquote></li>
 
 
 ### Languages Used
+
+* Shell/Batch
 
 * Java
 
